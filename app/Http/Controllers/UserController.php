@@ -76,7 +76,7 @@ class UserController extends Controller
                 $user->name = $data['name_user'];
                 $user->mobile = $data['mobile_user'];
                 $user->email = $data['email'];
-                $user->password = $data['password'];
+                $user->password = \Hash::make($data['password']);
                 $user->user_img = $imgName;
                 $user->save();
 
@@ -155,7 +155,7 @@ class UserController extends Controller
                     'name' => $request['name_user'],
                     'mobile' => $request['mobile_user'],
                     'email' => $request['email'],
-                    'password' => $request['password'],
+                    'password' => \Hash::make($request['password']),
                     'user_img' => (!empty($imgName)) ? $imgName : "",
                 ]);
 
